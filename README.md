@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CodeElder
 
-## Getting Started
+AI engineering workspace: assistant chat, code review, task planner, playbooks, credits and billing.
+Next.js 16, React 19, Tailwind 4, Supabase (auth, Postgres, RLS), Gemini API.
 
-First, run the development server:
+## Setup
+1. `npm install`
+2. Create a Supabase project and run `supabase/schema.sql` in the SQL editor.
+3. In Supabase Auth settings add your site URL and `<site>/auth/callback` as redirect URLs.
+4. Copy `.env.example` to `.env.local` and fill every value.
+5. `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Plans and payments
+Free (20 credits), Solo $47, Pro $57, Max $97, assumed monthly. Chat = 1 credit, review = 3, task = 5.
+The $97 payment link has not been supplied. The Max card shows "Contact us" until `NEXT_PUBLIC_PAYLINK_MAX` is set.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Plans are never activated by returning from a payment page. Activation happens only via:
+- `POST /api/webhooks/selar` with header `x-webhook-secret: $SELAR_WEBHOOK_SECRET`. The payload field names are a best guess and must be verified against the provider's real webhook before you rely on it.
+- `POST /api/admin/activate` with `{email, plan}` by a signed-in user listed in `ADMIN_EMAILS`, after you confirm payment manually.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy to Vercel
+Import the GitHub repo, add all variables from `.env.example` (service role and Gemini keys server-only), deploy, then set the Supabase redirect URLs to the Vercel domain.
