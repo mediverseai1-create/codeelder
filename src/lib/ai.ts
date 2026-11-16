@@ -14,8 +14,8 @@ async function call(opts: { system: string; turns: Turn[]; json?: boolean; premi
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new AiError("AI is not configured. Set GEMINI_API_KEY.", 503);
   const model = opts.premium
-    ? process.env.GEMINI_MODEL_PREMIUM || process.env.GEMINI_MODEL || "gemini-2.5-pro"
-    : process.env.GEMINI_MODEL || "gemini-2.5-flash";
+    ? process.env.GEMINI_MODEL_PREMIUM || process.env.GEMINI_MODEL || "gemini-3.5-flash"
+    : process.env.GEMINI_MODEL || "gemini-3.5-flash";
 
   const res = await fetch(`${BASE}/${model}:generateContent`, {
     method: "POST",
