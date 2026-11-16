@@ -5,7 +5,8 @@ import { PLANS, PAID_PLANS } from "@/lib/plans";
 export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-      <span className="grid h-7 w-7 place-items-center rounded-md bg-accent text-bg font-mono text-sm">{"{}"}</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <span className="grid h-8 w-8 place-items-center rounded-lg bg-white p-1"><img src="/logo.png" alt="" className="h-full w-full" /></span>
       CodeElder
     </Link>
   );
@@ -19,8 +20,10 @@ export function SiteHeader() {
           <Logo />
           <nav className="hidden gap-6 text-sm text-muted md:flex">
             <Link href="/features" className="hover:text-fg">Features</Link>
+            <Link href="/use-cases" className="hover:text-fg">Use cases</Link>
+            <Link href="/security" className="hover:text-fg">Security</Link>
+            <Link href="/docs" className="hover:text-fg">Docs</Link>
             <Link href="/pricing" className="hover:text-fg">Pricing</Link>
-            <Link href="/about" className="hover:text-fg">About</Link>
           </nav>
         </div>
         <div className="flex items-center gap-2">
@@ -37,9 +40,11 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-sm text-muted sm:flex-row sm:justify-between">
         <div><Logo /><p className="mt-2 max-w-xs">An AI engineering workspace for reviews, answers and planned changes.</p></div>
-        <div className="flex gap-10">
-          <div className="flex flex-col gap-2"><Link href="/features">Features</Link><Link href="/pricing">Pricing</Link></div>
-          <div className="flex flex-col gap-2"><Link href="/about">About &amp; contact</Link><Link href="/login">Sign in</Link></div>
+        <div className="grid grid-cols-2 gap-x-12 gap-y-6 sm:grid-cols-4">
+          <div className="flex flex-col gap-2"><span className="font-medium text-fg">Product</span><Link href="/features">Features</Link><Link href="/use-cases">Use cases</Link><Link href="/pricing">Pricing</Link><Link href="/changelog">Changelog</Link></div>
+          <div className="flex flex-col gap-2"><span className="font-medium text-fg">Resources</span><Link href="/docs">Getting started</Link><Link href="/security">Security</Link></div>
+          <div className="flex flex-col gap-2"><span className="font-medium text-fg">Company</span><Link href="/about">About</Link><Link href="/contact">Contact</Link></div>
+          <div className="flex flex-col gap-2"><span className="font-medium text-fg">Legal</span><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/login">Sign in</Link></div>
         </div>
       </div>
       <p className="border-t border-line py-4 text-center text-xs text-muted">© {new Date().getFullYear()} CodeElder. Not affiliated with any other coding assistant.</p>
@@ -71,7 +76,7 @@ export function PricingCards({ current }: { current?: string }) {
             ) : p.link ? (
               <a href={p.link} target="_blank" rel="noopener noreferrer" className={`btn mt-6 ${best ? "btn-primary" : "btn-ghost"}`}>Get {p.name}</a>
             ) : (
-              <Link href="/about#contact" className="btn btn-ghost mt-6">Contact us to get {p.name}</Link>
+              <Link href="/contact" className="btn btn-ghost mt-6">Contact us to get {p.name}</Link>
             )}
           </div>
         );
