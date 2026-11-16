@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Audience, FinalCta, Trust, Workflow } from "@/components/sections";
 import { CREDIT_COST } from "@/lib/plans";
 
 export const metadata: Metadata = { title: "Features" };
@@ -27,7 +27,10 @@ export default function Features() {
           </div>
         ))}
       </div>
-      <Link href="/signup" className="btn btn-primary mt-10">Start free</Link>
+      <Workflow />
+      <Audience />
+      <Trust />
+      <FinalCta />
     </main>
   );
 }

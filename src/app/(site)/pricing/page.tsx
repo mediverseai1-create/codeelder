@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PricingCards } from "@/components/site";
+import { Compare, Faq, FinalCta } from "@/components/sections";
 import { CREDIT_COST } from "@/lib/plans";
 
 export const metadata: Metadata = { title: "Pricing" };
@@ -18,6 +19,9 @@ export default function Pricing() {
           A chat message costs {CREDIT_COST.chat} credit, a code review {CREDIT_COST.review} and a planned task {CREDIT_COST.task}. Credits reset each billing period. Payment is handled securely on our payment partner&apos;s page; your plan is activated after the payment is confirmed, which can take a few minutes.
         </p>
       </div>
+      <Compare />
+      <Faq />
+      <FinalCta />
     </main>
   );
 }

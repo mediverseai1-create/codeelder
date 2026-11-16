@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { GitPullRequestArrow, MessagesSquare, ScanSearch, BookMarked, Gauge, ShieldCheck } from "lucide-react";
 import { PricingCards } from "@/components/site";
+import { Audience, Compare, Faq, FinalCta, Trust, Workflow } from "@/components/sections";
 
 const features = [
   { icon: MessagesSquare, title: "Assistant", text: "Ask about architecture, errors and unfamiliar code. Conversations are saved and follow your own rules." },
@@ -40,20 +41,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-6xl px-4">
-        <h2 className="text-center text-3xl font-bold">From question to merged change</h2>
-        <ol className="mt-10 grid gap-4 md:grid-cols-3">
-          {["Paste code or ask a question", "Review findings or follow the plan", "Apply the fix and keep the history"].map((s, i) => (
-            <li key={s} className="card p-6"><span className="font-mono text-accent2">0{i + 1}</span><p className="mt-3 font-medium">{s}</p></li>
-          ))}
-        </ol>
-      </section>
+      <Workflow />
+      <Audience />
+      <Trust />
 
       <section className="mx-auto mt-24 max-w-6xl px-4">
         <h2 className="text-center text-3xl font-bold">Simple pricing</h2>
         <p className="mb-10 mt-2 text-center text-muted">Start free with 20 credits. Upgrade when you need more.</p>
         <PricingCards />
       </section>
+      <Compare />
+      <Faq />
+      <FinalCta />
     </main>
   );
 }
